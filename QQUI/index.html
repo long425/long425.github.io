@@ -22,6 +22,16 @@
 			#dt-page {
 				animation: none!important;
 			}
+			#info-panel{
+				background-color: deepskyblue;
+			}
+			#self-head{
+				width: 3rem;
+				height: 3rem;
+				background-image: url(index.png);
+				background-size: contain;
+				border-radius: 50%;
+			}
 		</style>
 
 	</head>
@@ -32,7 +42,7 @@
 			<div class="page page-current" id="msg-page">
 				<!--导航栏-->
 				<header class="bar bar-nav">
-					<a class="icon icon-me pull-left open-panel"></a>
+					<a class="icon icon-me pull-left open-panel" data-panel="#info-panel"></a>
 					<button class="button pull-right"><b>+</b></button>
 					<div class="buttons-row" id="btn-title">
 						<a href="#tab1" class="tab-link active button">消息</a>
@@ -67,7 +77,7 @@
 				</nav>
 				
 				<!--内容区-->
-				<div class="content">
+				<div class="content close-panel">
 					<div class="content-block">
 						这里是好友列表
 					</div>
@@ -137,7 +147,11 @@
 		<!--侧边栏-->
 		<div class="panel panel-left panel-reveal" id="info-panel">
 			<div class="content-block">
-				<p>侧栏</p>
+				<div id="self-info">
+					<div id="self-head">
+						
+					</div>
+				</div>
 				<p><a href="#" class="close-panel">关闭</a></p>
 			</div>
 			
