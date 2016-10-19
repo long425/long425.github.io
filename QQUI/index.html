@@ -29,6 +29,10 @@
 				width: 3rem;
 				height: 3rem;
 				border-radius: 50%;
+				float: left;
+			}
+			#self-name{
+				float: left;
 			}
 		</style>
 
@@ -149,10 +153,53 @@
 					<img id="self-head" src="index.png" alt="" />
 					<span id="self-name">我的昵称</span>
 					<br />
+					<div id="self-level"></div>
+					<div style="clear: both;"></div>
+					<p>个人签名</p>
 				</div>
-				<p><a href="#" class="close-panel">关闭</a></p>
+				
+				<!--菜单列表-->
+				<div class="list-block">
+					<ul>
+						<li class="item-content">
+							<div class="item-media"><i class="icon icon-gift"></i></div>
+							<div class="item-inner">
+								<div class="item-title">了解会员特权</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media"><i class="icon icon-code"></i></div>
+							<div class="item-inner">
+								<div class="item-title">QQ钱包</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media"><i class="icon icon-app"></i></div>
+							<div class="item-inner">
+								<div class="item-title">个性装扮</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media"><i class="icon icon-star"></i></div>
+							<div class="item-inner">
+								<div class="item-title">我的收藏</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media"><i class="icon icon-picture"></i></div>
+							<div class="item-inner">
+								<div class="item-title">我的相册</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-media"><i class="icon icon-card"></i></div>
+							<div class="item-inner">
+								<div class="item-title">我的文件</div>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
-			
 		</div>
 	</body>
 	<script src="SUI/zepto.min.js"></script>
@@ -189,10 +236,55 @@
 		});
 		$(document).on("pageInit", "#dt-page", function(e, pageID, $page) {
 			document.title = "动态";
-		})
+		});
+		
+		var myLevel = 50;
+		
+		function refreshLevel(level){
+			var levArray = [];
+			
+			while(level/4>=1){
+				var remainder	= level%4;
+				levArray.unshift(remainder);
+				level = Math.floor(level/4);
+			}
+			levArray.unshift(level);
+			
+			//渲染等级图标；
+			for(var i =0;i<levArray.length;i++){
+				var picName;
+				switch (levArray.length-i){
+					case 3:
+						picName = 'sun.png';
+						break;
+					case 2:
+						picName = 'moon.png';
+						break;
+					case 1:
+						picName = 'star.png';
+						break;
+					default:
+						break;
+				}
+				for(var j=0;j<levArray[i];j++){
+					$("<img />")
+					.attr("src","img/"+picName)
+					.css("width","0.8rem")
+					.css("height","0.8rem")
+					.appendTo($("#self-level"));
+				}
+			}
+		}
+		refreshLevel(57);
+		
+		
 
 		//初始化SUI
 		$.init();
+		
+		
+		//3太阳2月亮1星星
+		3*Math.pow(4,2)+2*4+1*1
 	</script>
 
 </html>
