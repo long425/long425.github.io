@@ -22,17 +22,43 @@
 			#dt-page {
 				animation: none!important;
 			}
-			#info-panel{
-				background-color: deepskyblue;
-			}
-			#self-head{
+			
+			/*#info-panel {
+				background-color: white;
+			}*/
+			
+			#self-head {
 				width: 3rem;
 				height: 3rem;
 				border-radius: 50%;
 				float: left;
 			}
-			#self-name{
+			
+			#self-name {
 				float: left;
+			}
+			
+			.item-content {
+				/*background-color: lightskyblue;*/
+				color: gray;
+			}
+			
+			.item-inner:after {
+				content: none!important;
+			}
+			
+			ul:before,
+			ul:after {
+				content: none!important;
+			}
+			
+			#bottom-menu {
+				font: 0.6rem;
+			}
+			
+			#aside-menu {
+				height: 8.5rem;
+				overflow-y: scroll;
 			}
 		</style>
 
@@ -77,12 +103,11 @@
 						<span class="tab-label">动态</span>
 					</a>
 				</nav>
-				
+
 				<!--内容区-->
 				<div class="content close-panel">
 					<div class="content-block">
-						这里是好友列表
-					</div>
+						消息页面
 				</div>
 			</div>
 			<!--联系人页面-->
@@ -157,9 +182,9 @@
 					<div style="clear: both;"></div>
 					<p>个人签名</p>
 				</div>
-				
+
 				<!--菜单列表-->
-				<div class="list-block">
+				<div class="list-block" id="aside-menu">
 					<ul>
 						<li class="item-content">
 							<div class="item-media"><i class="icon icon-gift"></i></div>
@@ -199,6 +224,17 @@
 						</li>
 					</ul>
 				</div>
+				<div class="row" id="bottom-menu">
+					<div class="col-33">
+						<a class="button-link" href=""><i class="icon icon-settings">设置</i></a>
+					</div>
+					<div class="col-33">
+						<a id="night-shift-btn" class="button-link" href=""><i class="icon icon-star">夜间</i></a>
+					</div>
+					<div class="col-33">
+						<a class="button-link" href="">郑州<sup>18℃</sup></a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
@@ -237,23 +273,22 @@
 		$(document).on("pageInit", "#dt-page", function(e, pageID, $page) {
 			document.title = "动态";
 		});
-		
+
+		/////侧边栏
 		var myLevel = 50;
-		
-		function refreshLevel(level){
+
+		function refreshLevel(level) {
 			var levArray = [];
-			
-			while(level/4>=1){
-				var remainder	= level%4;
+			while(level / 4 >= 1) {
+				var remainder = level % 4;
 				levArray.unshift(remainder);
-				level = Math.floor(level/4);
+				level = Math.floor(level / 4);
 			}
 			levArray.unshift(level);
-			
 			//渲染等级图标；
-			for(var i =0;i<levArray.length;i++){
+			for(var i = 0; i < levArray.length; i++) {
 				var picName;
-				switch (levArray.length-i){
+				switch(levArray.length - i) {
 					case 3:
 						picName = 'sun.png';
 						break;
@@ -266,25 +301,32 @@
 					default:
 						break;
 				}
-				for(var j=0;j<levArray[i];j++){
+				for(var j = 0; j < levArray[i]; j++) {
 					$("<img />")
-					.attr("src","img/"+picName)
-					.css("width","0.8rem")
-					.css("height","0.8rem")
-					.appendTo($("#self-level"));
+						.attr("src", "img/" + picName)
+						.css("width", "0.8rem")
+						.css("height", "0.8rem")
+						.appendTo($("#self-level"));
 				}
 			}
 		}
-		refreshLevel(57);
+		refreshLevel(52);
+		////侧边栏
+
+		//
+		$("#night-shift-btn").click(function() {
+			$(document.body).toggleClass("theme-dark");
+			$("#info-panel").toggleClass("theme-dark");
+		});
 		
 		
 
+
 		//初始化SUI
 		$.init();
-		
-		
+
 		//3太阳2月亮1星星
-		3*Math.pow(4,2)+2*4+1*1
+		3 * Math.pow(4, 2) + 2 * 4 + 1 * 1
 	</script>
 
 </html>
