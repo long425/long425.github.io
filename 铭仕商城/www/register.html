@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>铭仕商城</title>
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="Font-Awesome-3.2.1/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/register.css" />
+	</head>
+
+	<body ng-app="myApp">
+		<div id="nav">
+			<nav id="nav-top">
+				<div id="regist" class="is-login drop-out">
+					<form id="login-left">
+						<label for="name">用户:</label>
+						<input type="text" name="account" id="username" autocomplete="off" />
+						<label for="name">密码:</label>
+						<input type="password" name="psw" id="password" autocomplete="off" />
+						<input type="submit" id="nav-button-top" value="登陆"></input>
+					</form>
+					<div id="login-right">
+						<a href="register.html">注册会员</a>|
+						<a href="login.html">会员登录</a>|
+						<a href="">找回密码</a>|
+						<a href="">设为首页</a>|
+						<a href="">加入收藏</a>
+					</div>
+
+					<div id="login-left1">
+						<span>会员名:</span>
+						<span>{{account}}</span>
+						<span>&nbsp;等级:</span>
+						<span class="header-top-text1">普通会员</span>
+						<span> &nbsp;预存款:0元</span>
+						<span>&nbsp;积分:0</span>
+						<a href="">
+							<span class="header-top-text2" ng-click="logdown()">&nbsp;[退出]</span>
+						</a>
+					</div>
+					<div id="login-right1">
+						<a href="">会员中心</a>|
+						<a href="">设为首页</a>|
+						<a href="">加入收藏</a>
+					</div>
+
+					<div class="clear"></div>
+				</div>
+			</nav>
+
+			<div id="nav-foot">
+				<div id="logo">
+					<a href="index">
+						<img src="images/20153214547.png" alt="logo" />
+					</a>
+				</div>
+				<div id="sousuo">
+					<span class="icon-search" id="icon-search"></span>
+					<input type="text" id="wenBenKuang" placeholder="请输入关键字" />
+					<input type="button" id="search-btn" value="搜索" />
+					<span id="guanjianci">
+						关键词：
+						<a href="">铭仕</a>
+						<a href="">商城</a>
+						<a href="">开封</a>
+						<a href="">通许</a>
+						<a href="">杞县</a>
+						<a href="">尉氏</a>
+						<a href="">兰考</a>
+						<a href="">网店</a>
+						<a href="">手机</a>
+						<a href="">液晶电视</a>
+						<a href="">苹果</a>
+					</span>
+					<div class="clear"></div>
+				</div>
+				<div id="menu">
+					<div id="menu-left" ng-controller="menuleft" ng-mouseenter="Xinxi()" ng-mouseleave="xinxi()">
+						<div id="menu-left-btn">
+							我的会员中心
+							<span class="icon-sort-down" id="left"></span>
+						</div>
+						<div id="resume" class="resume-login">
+							<!--登录前-->
+							<div id="denglu">
+								你好，请
+								<a href="login.html">登录会员</a>
+							</div>
+							<!--登陆后-->
+							<div id="denglu1">
+								欢迎你，
+								<a href="login.html">{{account}}</a>
+							</div>
+							<a href=""><span class="xinxi">我的订单</span></a>
+							<a href=""><span class="xinxi">查看我的信息</span></a>
+							<a href=""><span class="xinxi">商品收藏夹</span></a>
+							<a href=""><span class="xinxi">修改我的资料</span></a>
+							<a href=""><span class="xinxi">商品对比架</span></a>
+							<a href=""><span class="xinxi">管理密码</span></a>
+							<a href=""><span class="xinxi">管理我的收货人</span></a>
+							<a href=""><span class="xinxi">积分与奖品</span></a>
+							<a href=""><span class="xinxi">留言反馈</span></a>
+							<a href=""><span class="xinxi">站内短消息</span></a>
+							<a href=""><span class="xinxi">缺货登记</span></a>
+							<a href=""><span class="xinxi">申请成为VIP会员</span></a>
+							<div class="clear"></div>
+						</div>
+					</div>
+
+					<div id="menu-right" ng-controller="menuright" ng-mouseenter="Xinxi()" ng-mouseleave="xinxi()">
+						<div id="menu-right-btn">
+							去购物车结算
+							<span class="icon-sort-down" id="right"></span>
+						</div>
+						<div id="cart">
+							<a href="">
+								<span id="account">
+									去购物车结算
+								</span>
+							</a>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+
+		<div id="header" ng-controller="allGoods">
+			<!--分类列表-->
+			<div id="header-nav">
+				<div id="splb">
+					<a href="">全部商品分类</a>
+				</div>
+				<ul>
+					<li class="li">首页</li>
+					<li class="li">推荐商品</li>
+					<li class="li">促销商品</li>
+					<li class="li">特价商品</li>
+					<li class="li">新品上架</li>
+					<li class="li">商家列表</li>
+					<li class="li">技术支持</li>
+					<li class="li">百度搜索</li>
+				</ul>
+			</div>
+			<div id="itlb">
+
+				<div id="item" ng-controller="ctrl1">
+					<h3 class="item-h3">
+					<span>&emsp;·&emsp;</span>
+					<a href="">笔记本电脑</a>
+					<div class="close" ng-click="closeBtnClick()">
+						<span>X</span>
+					</div>
+					<div class="item-list">
+						<div class="item-left">
+							<a href=""><span class="title-text">全部显示</span><span class="shuxian"> |</span></a>
+							<a href=""><span class="shangpin">联想笔记本</span> <span class="shuxian"> |</span></a>
+							<a href=""><span class="shangpin">DELL笔记本</span></a>
+						</div>
+						<div class="item-list-right">
+							<div class="item-list-right-img">
+								<img src="images/201410168290.jpg" alt="" />
+							</div>
+							<div class="item-list-right-img">
+								<img src="images/201410162135.jpg" alt="" />
+							</div>
+							<div class="item-list-right-redian">
+								<span class="item-redian">
+									热点推荐
+								</span>	
+									<a href="">
+										<span class="item-redian-span">
+											多种品牌可供选择！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											配饰饰品专栏强势推出！
+										</span>
+									</a>
+									<a href="">
+										<span class="redian-fabu item-redian-span">
+											新闻中心惊艳发布！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本站推出商品专题中心！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											快来发布你的供求信息
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本网站详细使用说明！
+										</span>
+									</a>
+							</div>
+						</div>
+					</h3>
+					<h3 class="item-h3">
+						<span>&emsp;·&emsp;</span>
+						<a href="">DIY组装机、外设</a>
+						<div class="close" ng-click="closeBtnClick()">
+						<span>X</span>
+					</div>
+					<div class="item-list">
+						<div class="item-left">
+							<div>
+								<a href=""><span class="title-text">DIY主机</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">家用级</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">主流级</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">发烧级</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">奢华级</span></a>
+							</div>
+							<div>
+								<a href=""><span class="title-text">显示器</span></a>
+							</div>
+							<div>
+								<a href=""><span class="title-text">键盘鼠标</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">有线鼠标</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">有线键盘</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">有线套装</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">无线鼠标</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">无线套装</span></a>
+							</div>
+						</div>
+						<div class="item-list-right">
+							<div class="item-list-right-img">
+								<img src="images/201410168290.jpg" alt="" />
+							</div>
+							<div class="item-list-right-img">
+								<img src="images/201410162135.jpg" alt="" />
+							</div>
+							<div class="item-list-right-redian">
+								<span class="item-redian">
+									热点推荐
+								</span>	
+									<a href="">
+										<span class="item-redian-span">
+											多种品牌可供选择！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											配饰饰品专栏强势推出！
+										</span>
+									</a>
+									<a href="">
+										<span class="redian-fabu item-redian-span">
+											新闻中心惊艳发布！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本站推出商品专题中心！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											快来发布你的供求信息
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本网站详细使用说明！
+										</span>
+									</a>
+							</div>
+						</div>
+					</h3>
+					<h3 class="item-h3">
+						<span>&emsp;·&emsp;</span>
+						<a href="">路由器、网络设备</a>
+						<div class="close" ng-click="closeBtnClick()">
+							<span>X</span>
+						</div>
+						<div class="item-list">
+							<div class="item-left">
+								<div>
+									<a href=""><span class="title-text">全部路由器</span><span class="shuxian"> |</span></a>
+									<a href=""><span class="shangpin">TP-LINK</span> <span class="shuxian"> |</span></a>
+									<a href=""><span class="shangpin">FAST</span> <span class="shuxian"> |</span></a>
+									<a href=""><span class="shangpin">TenDa</span></a>
+								</div>
+								<div>
+									<a href=""><span class="title-text">网络机顶盒</span><span class="shuxian"> |</span></a>
+									<a href=""><span class="shangpin">精典</span></a>
+								</div>
+							</div>
+							<div class="item-list-right">
+								<div class="item-list-right-img">
+									<img src="images/201410168290.jpg" alt="" />
+								</div>
+								<div class="item-list-right-img">
+									<img src="images/201410162135.jpg" alt="" />
+								</div>
+								<div class="item-list-right-redian">
+									<span class="item-redian">
+										热点推荐
+									</span>	
+									<a href="">
+										<span class="item-redian-span">
+											多种品牌可供选择！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											配饰饰品专栏强势推出！
+										</span>
+									</a>
+									<a href="">
+										<span class="redian-fabu item-redian-span">
+											新闻中心惊艳发布！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本站推出商品专题中心！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											快来发布你的供求信息
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本网站详细使用说明！
+										</span>
+									</a>
+							</div>
+						</div>
+					</h3>
+					<h3 class="item-h3">
+						<span>&emsp;·&emsp;</span>
+						<a href="">打印机、复印机</a>
+						<div class="close" ng-click="closeBtnClick()">
+						<span>X</span>
+					</div>
+					<div class="item-list">
+						<div class="item-left">
+							
+						</div>
+						<div class="item-list-right">
+							<div class="item-list-right-img">
+								<img src="images/201410168290.jpg" alt="" />
+							</div>
+							<div class="item-list-right-img">
+								<img src="images/201410162135.jpg" alt="" />
+							</div>
+							<div class="item-list-right-redian">
+								<span class="item-redian">
+									热点推荐
+								</span>	
+									<a href="">
+										<span class="item-redian-span">
+											多种品牌可供选择！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											配饰饰品专栏强势推出！
+										</span>
+									</a>
+									<a href="">
+										<span class="redian-fabu item-redian-span">
+											新闻中心惊艳发布！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本站推出商品专题中心！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											快来发布你的供求信息
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本网站详细使用说明！
+										</span>
+									</a>
+							</div>
+						</div>
+					</h3>
+					<h3 class="item-h3">
+						<span>&emsp;·&emsp;</span>
+						<a href="">监控器材</a>
+						<div class="close" ng-click="closeBtnClick()">
+						<span>X</span>
+					</div>
+					<div class="item-list">
+						<div class="item-left">
+							<div>
+								<a href=""><span class="title-text">摄像机</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">海康</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">科康尼</span></a>
+							</div>
+							<div>
+								<a href=""><span class="title-text">录像机</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">海康威视</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">金鼎威视</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">鼎星威视</span></a>
+							</div>
+							<div>
+								<a href=""><span class="title-text">配件线材</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">双绞线传输器</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">BNC接头</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">支架</span> <span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">安防电源</span></a>
+							</div>
+							<div>
+								<a href=""><span class="title-text">新品推荐</span><span class="shuxian"> |</span></a>
+								<a href=""><span class="shangpin">摇头机</span></a>
+							</div>
+						</div>
+						<div class="item-list-right">
+							<div class="item-list-right-img">
+								<img src="images/201410168290.jpg" alt="" />
+							</div>
+							<div class="item-list-right-img">
+								<img src="images/201410162135.jpg" alt="" />
+							</div>
+							<div class="item-list-right-redian">
+								<span class="item-redian">
+									热点推荐
+								</span>	
+									<a href="">
+										<span class="item-redian-span">
+											多种品牌可供选择！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											配饰饰品专栏强势推出！
+										</span>
+									</a>
+									<a href="">
+										<span class="redian-fabu item-redian-span">
+											新闻中心惊艳发布！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本站推出商品专题中心！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											快来发布你的供求信息
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本网站详细使用说明！
+										</span>
+									</a>
+							</div>
+						</div>
+					</h3>
+					<h3 class="item-h3">
+						<span>&emsp;·&emsp;</span>
+						<a href="">超市收银、行业软件</a>
+						<div class="close"  ng-click="closeBtnClick()">
+							<span>X</span>
+						</div>
+						<div class="item-list">
+							<div class="item-left">
+								<div>
+									<a href=""><span class="title-text">收银软件</span></a>
+								</div>
+								<div>
+									<a href=""><span class="title-text">收款机</span><span class="shuxian"> |</span></a>
+									<a href=""><span class="shangpin">商超好搭档</span></a>
+								</div>
+								<div>
+									<a href=""><span class="title-text">售饭机</span></a>
+								</div>
+								<div>
+									<a href=""><span class="title-text">行业软件</span></a>
+								</div>
+							</div>
+							<div class="item-list-right">
+								<div class="item-list-right-img">
+									<img src="images/201410168290.jpg" alt="" />
+								</div>
+								<div class="item-list-right-img">
+									<img src="images/201410162135.jpg" alt="" />
+								</div>
+								<div class="item-list-right-redian">
+									<span class="item-redian">
+									热点推荐
+									</span>	
+									<a href="">
+										<span class="item-redian-span">
+											多种品牌可供选择！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											配饰饰品专栏强势推出！
+										</span>
+									</a>
+									<a href="">
+										<span class="redian-fabu item-redian-span">
+											新闻中心惊艳发布！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本站推出商品专题中心！
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											快来发布你的供求信息
+										</span>
+									</a>
+									<a href="">
+										<span class="item-redian-span">
+											本网站详细使用说明！
+										</span>
+									</a>
+							</div>
+						</div>
+					</h3>
+				</div>
+
+			</div>
+		</div>
+		
+		
+		
+		<div id="register">
+			<div id="main-top">
+				<img src="images/arrow01.gif" alt="" />
+				您现在的位置是：
+				<a href="">铭仕商城--开封市杞县尉氏通许兰考人的网上商城</a> -> 用户注册
+			</div>
+			<div id="register-box">
+				<div>
+					<img src="images/reg.jpg" alt="" />
+				</div>
+				<form id="register-form">
+					
+					 <table id="register-form-table">
+					 	
+                  		<tr class="register-table-tr">
+                    		<td colspan="2">&nbsp;注意：以下项目中带<font class="text-star">*</font>为必填项。</td>
+                    	</tr>
+                    	
+                    	
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">用&nbsp;户&nbsp;名：</td>
+                    		<td>
+                      			<input type="text" name="account" id="username" class="wenbenkuang-1" autocomplete="off">
+                      			<span>*</span>
+                    		</td>
+                    	</tr>
+                    	
+                    	
+                 		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
+                    		<td>
+                      			<input type="password" name="psw" id="psw" class="wenbenkuang-1">
+                      			<span>*</span>（请填写6到20位密码！）
+                    		</td>
+                   	 	</tr>
+                   	 	
+                   	 	
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">确认密码：</td>
+                    		<td>
+                      			<input type="password" name="confirm" id="config" class="wenbenkuang-1">
+                      			<span>*</span>
+                    		</td>
+                    	</tr>
+                    	
+                    	
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">E-mail：</td>
+                    		<td>
+                      			<input type="text" name="useremail" id="useremail" class="wenbenkuang-1" autocomplete="off">
+                      			<span>*</span>（请提供正确的地址！）
+                    		</td>
+                    	</tr>
+                  
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">密码保护问题：</td>
+                    		<td>
+                      			<input type="text" name="quesion" class="wenbenkuang-1" id="quesion" autocomplete="off">
+                      			<span>*</span>（务必议填写，否则将无法使用密码找回功能！）</td>
+                    	</tr>
+                    	
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">找回密码答案：</td>
+                    		<td>
+                      			<input name="answer" class="wenbenkuang-1" id="answer" autocomplete="off">
+                      			<span>*</span>（务必议填写，否则将无法使用密码找回功能！）
+                    		</td>
+                    	</tr>
+                    	
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">防恶意注册问答：</td>
+                    		<td>本商城名字？ <input name="regquestion" class="wenbenkuang-1" id="regquestion" type="text"> 
+                      			<span>*</span> (答案：铭仕商城)
+                    		</td>
+                    	</tr>
+                  		<tr class="register-table-tr">
+                    		<td class="abort-table-lefttd">验证码：</td>
+                    		<td><input name="verifycode" class="wenbenkuang-1" id="verifycode" type="text">
+                      			<span> *</span>&nbsp;
+                      			<img src="images/zhibian.asp" class="hendd" title="看不清,请点击刷新验证码" >
+                    		</td>
+                    	</tr>
+                  		<tr class="register-table-tr">
+                    		<td colspan="2">
+                      			<div id="register-button-box">
+                        			<input name="Submit" class="go-wenbenkuang-1" value="提交信息" type="submit">
+                        			<input name="Submit2" class="go-wenbenkuang-1" value="重置" type="reset">
+                        			<input name="Submit3" class="go-wenbenkuang-1" value="返回" type="button">
+                        		</div>
+                    		</td>
+                    	</tr>
+                  	</table>
+				</form>
+				
+				<div id="register-bot">
+					<div>
+						<img src="images/reg01.jpg" alt="" />
+					</div>
+					<div align="center" id="treaty">
+						<span style="font-size: 16"><b>铭仕商城--开封市杞县尉氏通许兰考人的网上商城注册条约</b></span>
+					</div>
+					
+					<div id="treaty-main">
+						
+				<p>尊贵的用户：</p>
+				<p >一、您只要注册成本站会员，即可在本站享受会员价购物、查询订单、获得积分、参加各项优惠活动等。请记住您的会员号，它是您在商城的唯一识别，您的任何投诉、问题、购买记录，均采用这个会员号处理。对您再次光临本站购物，会有很大的方便，许多信息也不必重新输入。会员积分达到规定积分及以上，可以升级成VIP会员，享受更多的购物优惠和礼品赠送。</p>
+				<p>二、会员名可以是您便于记忆的任何代号比如网名。不过，在注册用户的时候，我们建议您务必输入您的真实信息，我们会为您绝对保密。这样有利于准确发货、提供各项服务、在必要时迅速与您联系。</p>
+				<p>三、网站首页上有“找回密码”的链接，当您忘记密码时，请点击此处&nbsp;，输入您注册的用户名，系统会自动发送您的密码到您的注册邮箱中。</p>
+				<p>四、您随时可以登录“我的帐户”，进入“会员中心”查看并修改您的注册信息。</p>
+				<p>五、本站VIP会员，指积分达到规定分的贵宾客户，将享受专为贵宾客户提供的优惠方案及增值服务。
+					<br><br>六、会员注册一律免费，注册即可以享受会员价购物，当累计积分达到规定积分时，可进入“会员中心”中的“VIP会员申请”中，自行升级成VIP会员。
+					<br><br>&nbsp;&nbsp;VIP会员的优惠方案：&nbsp;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;1、VIP会员享受VIP会员价格，并获得专为VIP会员开设的特价购物专区的特价服务。
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;2、VIP会员会在年底或特殊日子里时收到我们送出的礼物。
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;3、VIP会员不定期组织消费积分抽奖活动，随时获得意外惊喜。
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;4、享受更加快捷的配送和其他服务。</p>
+				<p>七、本条款解释权归本网站所有。</p>                     
+						
+						
+						
+						
+					</div>
+					
+					
+					
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		<div class="clear"></div>
+		</div>	
+			
+		
+			
+			
+			
+			
+			
+			<div class="content2-void"></div>
+			<div id="abort">
+				<table class="abort-table">
+					<tr class="abort-table-toptr">
+						<td class="abort-imgbox">
+							<img src="images/help01.gif" alt="" />
+						</td>
+						<td class="abort-textbox">
+							<span class="abort-name">关于我们：</span>
+							<a href="">
+								<span class="abort-textbox-span">关于我们</span> -
+								<span class="abort-textbox-span">联系我们</span> -
+								<span class="abort-textbox-span">法律声明</span> -
+								<span class="abort-textbox-span">版权声明</span>
+							</a>
+						</td>
+						<td class="abort-imgbox">
+							<img src="images/help02.gif" alt="" />
+						</td>
+						<td class="abort-textbox">
+							<span class="abort-name">付款方式：</span>
+							<a href="">
+								<span class="abort-textbox-span">银行转账</span> -
+								<span class="abort-textbox-span"> 在线支付</span> -
+								<span class="abort-textbox-span">邮局汇款</span>
+							</a>
+						</td>
+						<td class="abort-right" rowspan="2">
+							<table class="abort-table-table">
+								<tr class="abort-table-table-toptr">
+									<td class="abort-table-table-toptd">
+										<span class="take">订阅邮件:</span>
+										<input type="text" class="abort-input" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="radio" name="radio" checked/>
+										<span class="take">订阅</span>
+										<input type="radio" name="radio" />
+										<span class="take">退订</span>
+										<input type="submit" value="确认提交" id="abort-btn" />
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr class="abort-table-bottr">
+						<td class="abort-imgbox">
+							<img src="images/help03.gif" alt="" />
+						</td>
+						<td class="abort-textbox">
+							<span class="abort-name">购物指南：</span>
+							<a href="">
+								<span class="abort-textbox-span">常见问题</span> -
+								<span class="abort-textbox-span">购物流程 </span> -
+								<span class="abort-textbox-span">积分等级 </span> -
+								<span class="abort-textbox-span">售后条款</span>
+							</a>
+						</td>
+						<td class="abort-imgbox">
+							<img src="images/help04.gif" alt="" />
+						</td>
+						<td class="abort-textbox">
+							<span class="abort-name">配送方式：</span>
+							<a href="">
+								<span class="abort-textbox-span">配送地区</span> -
+								<span class="abort-textbox-span">送货费用</span> -
+								<span class="abort-textbox-span">安全保密</span>
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div id="star-imgbox">
+				<div class="star-img-top"></div>
+				<div id="star-img">
+					<img src="images/201410237710.jpg" alt="" />
+				</div>
+				<div class="star-img-top"></div>
+			</div>
+
+			<div id="bank">
+				<div class="star-img-top"></div>
+				<div id="bank-box">
+					<a href="">
+						<img src="images/201410237896.png" alt="" class="bank-card1" />
+					</a>
+					<a href="">
+						<img src="images/201410236871.gif" alt="" class="bank-card1" />
+					</a>
+					<a href="">
+						<img src="images/201410235505.png" alt="" class="bank-card1" />
+					</a>
+					<a href="">
+						<img src="images/201410236641.jpg" alt="" class="bank-card1" />
+					</a>
+					<a href="">
+						<img src="images/201410235757.gif" alt="" class="bank-card2" />
+					</a>
+					<a href="">
+						<img src="images/201410236106.png" alt="" class="bank-card2" />
+					</a>
+					<a href="">
+						<img src="images/201410238070.png" alt="" class="bank-card2" />
+					</a>
+				</div>
+				<div class="star-img-top"></div>
+			</div>
+
+			<div id="partner">
+				<div id="partner-top">
+					<img src="images/ge.gif" alt="" />
+				</div>
+				<div id="partner-bot">
+					关于我们：
+					<a href="" class="partner-a">关于我们 </a>
+					<a href="" class="partner-a"> 联系我们 </a>
+					<a href="" class="partner-a"> 法律声明 </a>
+					<a href="" class="partner-a"> 版权声明 </a>
+					<a href="" class="partner-a"> 常见问题 </a>
+					<a href="" class="partner-a"> 购物流程 </a>
+				</div>
+
+			</div>
+
+			<footer>
+				<div id="text">
+					客服电话：0371--28286868 Email：
+					<a href="">hnjgdzkj@163.com</a>
+					地址：河南省开封市金明区金明大道富辰商务B座 邮编：475000
+					<br> Copyright © 河南省金谷电子科技有限公司&nbsp;&nbsp;
+					<br>页面执行时间:296.875 ms&nbsp;&nbsp;
+					<a href="">Powered By：ZhiBian.Net</a>
+					<img src="images/count.asp" alt="" /> ICP备案号：
+					<a href="" class="police">豫ICP备14017232号-1</a>
+				</div>
+			</footer>
+
+			<div id="left-nav" ng-controller="ctrl3">
+				<div id="left-nav-img1">
+					<a href="">
+						<img src="images/side_icon04.png" alt="" class="img-nav" />
+					</a>
+				</div>
+				<div id="left-nav-img2">
+					<a href="">
+						<img src="images/side_icon04.png" alt="" class="img-nav" />
+					</a>
+				</div>
+				<div id="left-nav-img3">
+					<a href="">
+						<img src="images/side_icon02.png" alt="" class="img-nav" />
+					</a>
+				</div>
+				<div id="left-nav-img4" ng-click="backtopClick()">
+					<a href="">
+						<img src="images/side_icon05.png" alt="" class="img-nav" />
+					</a>
+				</div>
+			</div>
+	</body>
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/angular.min.js"></script>
+	<script src="libs/angular-route.min.js"></script>
+	<script src="libs/jquery.cookie.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/register.js"></script>
+
+</html>
